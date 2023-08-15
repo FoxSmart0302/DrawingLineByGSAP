@@ -23,35 +23,47 @@ html {
   box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #3e8e41}
+.button:hover {
+  background-color: #3e8e41
+}
 
 .button:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px)
 }
+
 h1 {
-  font-weight:bold;
-  font-size:2.5em;
-  text-transform:capitalize;
-  letter-spacing: 0.1em;  
+  font-weight: bold;
+  font-size: 2.5em;
+  text-transform: capitalize;
+  letter-spacing: 0.1em;
 }
-a:link, a:visited{
-  color:#6d6e73;
+
+a:link,
+a:visited {
+  color: #6d6e73;
 }
-a:hover, a:focus, a:active {
-  color:#444;
+
+a:hover,
+a:focus,
+a:active {
+  color: #444;
 }
-p{
+
+p {
   margin: 5px;
 }
-#imgdiv, #svgdiv {
+
+#imgdiv,
+#svgdiv {
   display: none;
   border: 2px solid #ccc;
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
 }
+
 #drop {
   border: 2px dashed #ccc;
   width: 300px;
@@ -61,29 +73,35 @@ p{
   text-align: center;
   border-radius: 5px;
 }
- 
-#drop.hovering{
+
+#drop.hovering {
   border: 2px dashed #333;
 }
-#run, #save{
+
+#run,
+#save {
   border: 1px solid #555;
   border-radius: 5px;
   padding: 2px 5px;
   text-decoration: none;
   background-color: #ddd;
 }
-#run:hover, #save:hover{
+
+#run:hover,
+#save:hover {
   background-color: #eee;
 }
+
 #imageInput {
   display: none;
 }
 
-#myCanvas{
+#myCanvas {
   border: 1px solid black;
 }
-#svgContainer{
-/* background-color: grey !important; */
- position: relative;
- margin-top: 10px;
+
+#svgContainer {
+  /* background-color: grey; */
+  position: relative;
+  margin-top: 10px;
 }

@@ -26,10 +26,6 @@ function onConvert($minputfile, $moutputfile)
 
 }
 
-// var_dump("hello");
-// echo "<script>console.log('Debug Objects:' );</script>";
-
-
 header('Content-Type: application/json');
 
 $aResult = array();
