@@ -1,5 +1,10 @@
 
+// var  points1 = getPoints(document.getElementById("polygon").getAttribute("d"));
+
+// console.log("points1", points1);
+
 let handTl;
+let indexCount = 0;
 function onConvert() {  
   if(handTl != null){
     handTl.kill();
@@ -24,14 +29,14 @@ function onConvert() {
     paths[i].setAttribute("stroke", "rgb(0, 0, 0)");
     paths[i].setAttribute("stroke-linecap", "round");
     paths[i].setAttribute("stroke-miterlimit", "100");
-    paths[i].setAttribute("stroke-width", "5");
+    paths[i].setAttribute("stroke-width", "1");
   }
 
   // main timeline creation
   console.log("===pathlength:", paths.length);
   // Calculate the total width of all paths
   
-  const totalDrawingTime = 50;
+  const totalDrawingTime = 25;
 
   // Loop through each path
   for (let i = 0; i < paths.length; i++) {
@@ -66,20 +71,20 @@ function InitCanvas() {
   const c = document.getElementById("myCanvas");
   const ctx = c.getContext("2d");
   ctx.clearRect(0, 0, c.width, c.height);
+  indexCount = 0;
 }
 
 
 $(document).ready(function () {
   let firstE;
   let firstF;
-  let i = 0
   let prevE;
   let prevF;
   setInterval(() => {
   
     // console.log("current pos", document.getElementById("hand").getAttribute("transform"))
     const transformString = document.getElementById("hand").getAttribute("transform");
-
+    // console.log('transformString :>> ', transformString);
     // Create a DOMMatrix object from the transform string
     const matrix = new DOMMatrix(transformString);
 
@@ -91,25 +96,38 @@ $(document).ready(function () {
     const c = document.getElementById("myCanvas");
     const ctx = c.getContext("2d");
     ctx.beginPath();
-    if (i == 0) {
+    if (indexCount == 0) {
       firstE = e;
       firstF = f;
-      console.log("continue")
+      console.log("continue", firstE, firstF);
     } else {
       // ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
       // console.log("Math:", Math.sqrt(Math.pow(Math.abs(e - prevE), 2) + Math.pow(Math.abs(f - prevF), 2)))
-      if (Math.sqrt(Math.pow(Math.abs(e - prevE), 2) + Math.pow(Math.abs(f - prevF), 2)) < 20) {
+      if (Math.sqrt(Math.pow(Math.abs(e - prevE), 2) + Math.pow(Math.abs(f - prevF), 2)) < 5) {
         ctx.moveTo(prevE, prevF)
         ctx.lineTo(e, f);
         ctx.stroke();
+        ctx.fill();
+      }
+      else{
+        
+        if (Math.sqrt(Math.pow(Math.abs(prevE - firstE), 2) + Math.pow(Math.abs(prevF - firstF), 2)) < 20 && indexCount > 2) {
+          ctx.moveTo(prevE, prevF);
+          ctx.lineTo(firstE, firstF);
+          ctx.stroke();
+          ctx.fill();
+  
+        }
+        firstE = e;
+        firstF = f;
       }
 
     }
     prevE = e;
     prevF = f;
 
-    i ++ ;
-  }, 0.1);
+    indexCount ++ ;
+  }, 0.001);
 })
 
 onConvert();

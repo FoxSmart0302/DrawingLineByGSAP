@@ -83,6 +83,7 @@ p{
   border: 1px solid black;
 }
 #svgContainer{
+/* background-color: grey !important; */
  position: relative;
  margin-top: 10px;
 }
