@@ -7,11 +7,12 @@ html {
   padding: 0;
   background: white;
 }
-
-.button {
-  display: inline-block;
+.load-btn{
   padding: 15px 25px;
   font-size: 24px;
+  box-shadow: 0 9px #999;
+  border-radius: 15px;
+  display: inline-block;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -19,15 +20,13 @@ html {
   color: #fff;
   background-color: #4CAF50;
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
 }
 
-.button:hover {
+.load-btn:hover {
   background-color: #3e8e41
 }
 
-.button:active {
+.load-btn:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px)
@@ -101,7 +100,96 @@ p {
 }
 
 #svgContainer {
-  /* background-color: grey; */
   position: relative;
   margin-top: 10px;
 }
+
+
+/*speed slider bar start*/
+.rangeslider {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slider-top {
+  margin-top: 20px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.slider-bar {
+  color: #333;
+  border:1px solid darkgrey;
+  padding:5px 40px;
+}
+.slider-bar h3{
+  text-align: left;
+}
+.range input{
+  width: 200px;
+}
+.slider-content {
+  display: flex;
+}
+
+.range input {
+  border: none;
+}
+.rebutton{
+  margin-left: 20px;
+  margin-top: -10px;
+}
+/*speed slider bar end*/
+
+/* button animation start*/
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.redraw-btn{
+  display: block;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.redraw-btn span{
+  position: relative;
+  z-index: 2;
+}
+
+.redraw-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: goldenrod;
+  transition: all .35s;
+}
+
+.redraw-btn:hover{
+  color: red;
+}
+
+.redraw-btn:hover:after{
+  width: 100%;
+}
+/* button animation end*/

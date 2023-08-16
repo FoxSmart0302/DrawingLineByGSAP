@@ -131,10 +131,29 @@
             </svg>
         </div>
 
-
+        <div class="slider-top">
+            <div class="slider-bar">
+                <h3>Speed</h3>
+                <div class="slider-content">
+                    <form oninput="output.value = Math.round(range.valueAsNumber)">
+                        <div class="range">
+                            <input name="range" type="range" min="10" max="100">
+                            <div class="range-output">
+                                <output class="output" name="output" for="range">
+                                    50
+                                </output>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="rebutton">
+                        <button class="redraw-btn" onclick="onConvert()"><span>REDRAW</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div style="margin-top:20px;">
             <input type="file" id="imageInput" accept="image/*" hidden>
-            <button type="file" class="button" id="imageSelect" onclick="importData()">LOAD FILE</button>
+            <button type="file" class="button load-btn" id="imageSelect" onclick="importData()">LOAD FILE</button>
         </div>
 
     </div>
@@ -146,7 +165,7 @@
     <script src="./js/jimp.js"></script>
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src='./js/DrawSVGPlugin3.min.js'></script>
-    
+
     <script src="./js/customize.js"></script>
     <script src="./js/convert.js"></script>
 

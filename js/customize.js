@@ -2,6 +2,11 @@
 let handTl;
 let indexCount = 0;
 function onConvert() {
+
+  var setValue = document.querySelector('input[name="range"]').value;
+  console.log(setValue);
+  let totalDrawingTime = setValue * 0.3;
+
   InitCanvas();
   if (handTl != null) {
     handTl.kill();
@@ -11,13 +16,10 @@ function onConvert() {
   handTl = newTimeline;
   gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
 
-  // gsap.set("#svg path", {stroke:"black", drawSVG:0});
   gsap.set("#handwriting path", { stroke: "black", drawSVG: false });
   gsap.set("#hand", { yPercent: -100, transformOrigin: "center center" });
 
   gsap.config({ trialWarn: false });
-  // const iconTl = gsap.timeline({ reversed: true, paused: true, defaults: { ease: "none", duration: 0.35 } });
-  // iconTl.to("#hand", { autoAlpha: 0 }, 0);
 
   var elem = document.getElementById("handwriting");
   var paths = elem.getElementsByTagName("path");
@@ -25,22 +27,18 @@ function onConvert() {
     paths[i].setAttribute("fill", "none");
   }
 
-  // main timeline creation
   // Calculate the total width of all paths
-
-  const totalDrawingTime = 25;
-
   // Loop through each path
   for (let i = 0; i < paths.length; i++) {
     const pathitem = paths[i];
 
     const pathSize = pathitem.getBBox();
-
     // Calculate the time it should take to draw this path based on the desired speed
     const itemTime = pathSize.width / totalDrawingTime;
-
+    let time = 5 + itemTime / 1.1;
+    console.log('time :>> ', time);
     handTl.to("#hand", {
-      duration: itemTime,
+      duration: time,
       drawSVG: true,
       motionPath: { path: pathitem, align: pathitem, autoRoate: true, drawSVG: true },
       onComplete: function () {
@@ -80,8 +78,10 @@ $(document).ready(function () {
 
     const c = document.getElementById("myCanvas");
     const ctx = c.getContext("2d");
-
+    ctx.lineJoin = 'round'
+    ctx.fill();
     ctx.beginPath();
+
     if (indexCount == 0) {
       firstE = e;
       firstF = f;
@@ -91,7 +91,6 @@ $(document).ready(function () {
         ctx.moveTo(prevE, prevF)
         ctx.lineTo(e, f);
         ctx.stroke();
-        ctx.fill();
       }
       else {
         if (Math.sqrt(Math.pow(Math.abs(prevE - firstE), 2) + Math.pow(Math.abs(prevF - firstF), 2)) < 25 && indexCount > 1) {
@@ -127,7 +126,6 @@ $(document).ready(function () {
             ctx.moveTo(startX, startY);
             ctx.lineTo(currentX, currentY);
             ctx.stroke();
-            ctx.fill();
 
             // Check if the animation is still in progress
             if (elapsed < duration) {
